@@ -17,6 +17,10 @@ const EventForm = () => {
 
   const dateInput = useRef(null);
 
+  const updateEvent = (key, value) => {
+    setEvent((prevEvent) => ({ ...prevEvent, [key]: value }));
+  };
+
   useEffect(() => {
     const p = new Pikaday({
       field: dateInput.current,

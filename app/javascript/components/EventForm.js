@@ -1,9 +1,78 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const EventForm = () => {
+  const [event, setEvent] = useState({
+    event_type: '',
+    event_date: '',
+    title: '',
+    speaker: '',
+    host: '',
+    published: false,
+  });
+  const [formErrors, setFormErrors] = useState({});
+
+  const handleInputChange = (e) => {
+    const { target } = e;
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+
+    setEvent({ ...event, [name]: value });
+  };
+
+  const validateEvent = () => {
+    const errors = {};
+
+    if (event.event_type === '') {
+      errors.event_type = 'You must enter an event type';
+    }
+
+    if (event.event_date === '') {
+      errors.event_date = 'You must enter a valid date';
+    }
+
+    if (event.title === '') {
+      errors.title = 'You must enter a title';
+    }
+
+    if (event.speaker === '') {
+      errors.speaker = 'You must enter at least one speaker';
+    }
+
+    if (event.host === '') {
+      errors.host = 'You must enter at least one host';
+    }
+
+    return errors;
+  };
+
+  const isEmptyObject = (obj) => Object.keys(obj).length === 0;
+
+  const renderErrors = () => {
+    if (isEmptyObject(formErrors)) {
+      return null;
+    }
+
+    return (
+      <div className="errors">
+        <h3>The following errors prohibited the event from being saved:</h3>
+        <ul>
+          {Object.values(formErrors).map((formError) => (
+            <li key={formError}>{formError}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submitted');
+    const errors = validateEvent(event);
+
+    if (!isEmptyObject(errors)) {
+      setFormErrors(errors);
+    } else {
+      console.log(event);
+    }
   };
 
   return (

@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { isEmptyObject, validateEvent } from '../helpers/helpers';
+import Pikaday from 'pikaday';
+import 'pikaday/css/pikaday.css';
 
 const EventForm = () => {
   const [event, setEvent] = useState({
@@ -12,6 +14,8 @@ const EventForm = () => {
   });
 
   const [formErrors, setFormErrors] = useState({});
+
+  const dateInput = useRef(null);
 
   const handleInputChange = (e) => {
     const { target } = e;
@@ -73,7 +77,8 @@ const EventForm = () => {
               type="text"
               id="event_date"
               name="event_date"
-              onChange={handleInputChange}
+              ref={dateInput}
+              autoComplete="off"
             />
           </label>
         </div>

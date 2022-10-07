@@ -10,6 +10,7 @@ const EventForm = () => {
     host: '',
     published: false,
   });
+
   const [formErrors, setFormErrors] = useState({});
 
   const handleInputChange = (e) => {
@@ -50,42 +51,75 @@ const EventForm = () => {
 
   return (
     <section>
+      {renderErrors()}
+
       <h2>New Event</h2>
       <form className="eventForm" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="event_type">
             <strong>Type:</strong>
-            <input type="text" id="event_type" name="event_type" />
+            <input
+              type="text"
+              id="event_type"
+              name="event_type"
+              onChange={handleInputChange}
+            />
           </label>
         </div>
         <div>
           <label htmlFor="event_date">
             <strong>Date:</strong>
-            <input type="text" id="event_date" name="event_date" />
+            <input
+              type="text"
+              id="event_date"
+              name="event_date"
+              onChange={handleInputChange}
+            />
           </label>
         </div>
         <div>
           <label htmlFor="title">
             <strong>Title:</strong>
-            <textarea cols="30" rows="10" id="title" name="title" />
+            <textarea
+              cols="30"
+              rows="10"
+              id="title"
+              name="title"
+              onChange={handleInputChange}
+            />
           </label>
         </div>
         <div>
           <label htmlFor="speaker">
             <strong>Speakers:</strong>
-            <input type="text" id="speaker" name="speaker" />
+            <input
+              type="text"
+              id="speaker"
+              name="speaker"
+              onChange={handleInputChange}
+            />
           </label>
         </div>
         <div>
           <label htmlFor="host">
             <strong>Hosts:</strong>
-            <input type="text" id="host" name="host" />
+            <input
+              type="text"
+              id="host"
+              name="host"
+              onChange={handleInputChange}
+            />
           </label>
         </div>
         <div>
           <label htmlFor="published">
             <strong>Publish:</strong>
-            <input type="checkbox" id="published" name="published" />
+            <input
+              type="checkbox"
+              id="published"
+              name="published"
+              onChange={handleInputChange}
+            />
           </label>
         </div>
         <div className="form-actions">

@@ -17,6 +17,19 @@ const EventForm = () => {
 
   const dateInput = useRef(null);
 
+  useEffect(() => {
+    const p = new Pikaday({
+      field: dateInput.current,
+      onSelect: (date) => {
+        const formattedDate = formatDate(date);
+        dateInput.current.value = formattedDate;
+        updateEvent('event_date', formattedDate);
+      },
+    });
+
+    return () => p.destroy();
+  }, []);
+
   const handleInputChange = (e) => {
     const { target } = e;
     const { name } = target;

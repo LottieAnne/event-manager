@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { isEmptyObject, validateEvent } from '../helpers/helpers';
+import { isEmptyObject, validateEvent, formatDate } from '../helpers/helpers';
 import Pikaday from 'pikaday';
 import 'pikaday/css/pikaday.css';
 

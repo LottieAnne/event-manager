@@ -17,7 +17,7 @@ export const success = (message, options = {}) => {
 };
 
 export const info = (message, options = {}) => {
-  toast.info(message, Object.assign(defaults,options));
+  toast.info(message, Object.assign(defaults, options));
 };
 
 export const warn = (message, options = {}) => {

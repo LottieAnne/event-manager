@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import Pikaday from 'pikaday';
 import PropTypes from 'prop-types';
@@ -8,17 +8,19 @@ import 'pikaday/css/pikaday.css';
 const EventForm = ({ events, onSave }) => {
   const { id } = useParams();
 
-  const defaults = {
-    event_type: '',
-    event_date: '',
-    title: '',
-    speaker: '',
-    host: '',
-    published: false,
-  };
+  const initialEventState = useCallback(() => {
+    const defaults = {
+      event_type: '',
+      event_date: '',
+      title: '',
+      speaker: '',
+      host: '',
+      published: false,
+    };
+    const currEvent = id ? events.find((e) => e.id === Number(id)) : {};
+    return { ...defaults, ...currEvent };
+  }, [events, id]);
 
-  const currEvent = id? events.find((e) => e.id === Number(id)) : {};
-  const initialEventState = { ...defaults, ...currEvent };
   const [event, setEvent] = useState(initialEventState);
 
   const [formErrors, setFormErrors] = useState({});

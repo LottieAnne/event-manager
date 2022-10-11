@@ -13,7 +13,7 @@ const defaults = {
 };
 
 export const success = (message, options = {}) => {
-  toast.success(messsage, Object.assign(defaults, options));
+  toast.success(message, Object.assign(defaults, options));
 };
 
 export const info = (message, options = {}) => {

@@ -71,6 +71,33 @@ const Editor = () => {
     }
   };
 
+  const updateEvent = async (updateEvent) => {
+    try {
+      const response = await window.fetch(
+        `/api/events/${updateEvent.id}`,
+        {
+          method: 'PUT',
+          body: JSON.stringify(updateEvent),
+          headers: {
+            Accept: 'applicaation/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      if (!response.ok) throw Error(response.statusText);
+
+      const newEvents = events;
+      const idx = newEvents.findIndex((event) => event.id === updatedEvent.id);
+      newEvents[idx] = updatedEvent;
+      setEvents(newEvents);
+
+      success('Event Updated!');
+      navigate(`/events/${updatedEvent.id}`);
+    } catch (error) {
+      handleAjaxError(error);
+    }
+  }
+
   return (
     <>
       <Header />
@@ -82,6 +109,7 @@ const Editor = () => {
             <Routes>
               <Route path="new" element={<EventForm onSave={addEvent} />} />
               <Route path=":id" element={<Event events={events} onDelete={deleteEvent} />} />
+              <Route path=":id/edit" element={<EventForm events={events} onSave={updateEvent} />} />
             </Routes>
           </>
         )}

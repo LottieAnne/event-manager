@@ -64,14 +64,14 @@ const Editor = () => {
 
         success('Event Deleted!');
         navigate('/events');
-        setEvents(events.filter(event => event.id !== eventId));
+        setEvents(events.filter((event) => event.id !== eventId));
       } catch (error) {
         handleAjaxError(error);
       }
     }
   };
 
-  const updateEvent = async (updateEvent) => {
+  const updateEvent = async (updatedEvent) => {
     try {
       const response = await window.fetch(
         `/api/events/${updateEvent.id}`,
@@ -82,7 +82,7 @@ const Editor = () => {
             Accept: 'applicaation/json',
             'Content-Type': 'application/json',
           },
-        }
+        },
       );
       if (!response.ok) throw Error(response.statusText);
 
@@ -96,7 +96,7 @@ const Editor = () => {
     } catch (error) {
       handleAjaxError(error);
     }
-  }
+  };
 
   return (
     <>

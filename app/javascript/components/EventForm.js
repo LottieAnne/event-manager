@@ -83,6 +83,8 @@ const EventForm = ({ events, onSave }) => {
       {renderErrors()}
 
       <h2>New Event</h2>
+      {renderErrors()}
+
       <form className="eventForm" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="event_type">
@@ -92,6 +94,7 @@ const EventForm = ({ events, onSave }) => {
               id="event_type"
               name="event_type"
               onChange={handleInputChange}
+              value={event.event_type}
             />
           </label>
         </div>
@@ -104,6 +107,8 @@ const EventForm = ({ events, onSave }) => {
               name="event_date"
               ref={dateInput}
               autoComplete="off"
+              value={event.event_date}
+              onChange={handleInputChange}
             />
           </label>
         </div>
@@ -116,6 +121,7 @@ const EventForm = ({ events, onSave }) => {
               id="title"
               name="title"
               onChange={handleInputChange}
+              value={event.title}
             />
           </label>
         </div>
@@ -127,6 +133,7 @@ const EventForm = ({ events, onSave }) => {
               id="speaker"
               name="speaker"
               onChange={handleInputChange}
+              value={event.speaker}
             />
           </label>
         </div>
@@ -138,6 +145,7 @@ const EventForm = ({ events, onSave }) => {
               id="host"
               name="host"
               onChange={handleInputChange}
+              value={event.host}
             />
           </label>
         </div>
@@ -149,6 +157,7 @@ const EventForm = ({ events, onSave }) => {
               id="published"
               name="published"
               onChange={handleInputChange}
+              checked={event.published}
             />
           </label>
         </div>
@@ -163,5 +172,20 @@ const EventForm = ({ events, onSave }) => {
 export default EventForm;
 
 EventForm.propTypes = {
+  events: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      event_type: PropTypes.string.isRequired,
+      event_date: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      speaker: PropTypes.string.isRequired,
+      host: PropTypes.string.isRequired,
+      published: PropTypes.bool.isRequired,
+    }),
+  ),
   onSave: PropTypes.func.isRequired,
+};
+
+EventForm.defaultProps = {
+  events: [],
 };

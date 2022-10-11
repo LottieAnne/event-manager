@@ -43,6 +43,10 @@ const EventForm = ({ events, onSave }) => {
     return () => p.destroy();
   }, []);
 
+  useEffect(() => {
+    setEvent(initialEventState);
+  }, [events]);
+
   const handleInputChange = (e) => {
     const { target } = e;
     const { name } = target;

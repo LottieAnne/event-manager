@@ -22,7 +22,6 @@ const EventForm = ({ events, onSave }) => {
   }, [events, id]);
 
   const [event, setEvent] = useState(initialEventState);
-
   const [formErrors, setFormErrors] = useState({});
 
   const dateInput = useRef(null);
@@ -47,7 +46,7 @@ const EventForm = ({ events, onSave }) => {
 
   useEffect(() => {
     setEvent(initialEventState);
-  }, [events]);
+  }, [events, initialEventState]);
 
   const handleInputChange = (e) => {
     const { target } = e;

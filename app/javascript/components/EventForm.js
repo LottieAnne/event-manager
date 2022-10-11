@@ -1,18 +1,25 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Pikaday from 'pikaday';
 import PropTypes from 'prop-types';
 import { isEmptyObject, validateEvent, formatDate } from '../helpers/helpers';
 import 'pikaday/css/pikaday.css';
 
-const EventForm = ({ onSave }) => {
-  const [event, setEvent] = useState({
+const EventForm = ({ events, onSave }) => {
+  const { id } = useParams();
+
+  const defaults = {
     event_type: '',
     event_date: '',
     title: '',
     speaker: '',
     host: '',
     published: false,
-  });
+  };
+
+  const currEvent = id? events.find((e) => e.id === Number(id)) : {};
+  const initialEventState = { ...defaults, ...currEvent };
+  const [event, setEvent] = useState(initialEventState);
 
   const [formErrors, setFormErrors] = useState({});
 

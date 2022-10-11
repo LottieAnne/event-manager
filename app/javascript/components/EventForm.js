@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { isEmptyObject, validateEvent, formatDate } from '../helpers/helpers';
-import PropTypes from 'prop-types';
 import Pikaday from 'pikaday';
+import PropTypes from 'prop-types';
+import { isEmptyObject, validateEvent, formatDate } from '../helpers/helpers';
 import 'pikaday/css/pikaday.css';
 
 const EventForm = ({ onSave }) => {

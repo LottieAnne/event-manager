@@ -4,8 +4,8 @@ import Header from './Header';
 import EventList from './EventList';
 import Event from './Event';
 import EventForm from './EventForm';
-import { success } from '../../helpers/notifications';
-import handleAjaxError from '../../helpers/helpers';
+import { success } from '../helpers/notifications';
+import { handleAjaxError } from '../helpers/helpers';
 
 const Editor = () => {
   const [events, setEvents] = useState([]);

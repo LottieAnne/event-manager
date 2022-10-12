@@ -11,10 +11,7 @@ const EventList = ({ events }) => {
   };
 
   const matchSearchTerm = (obj) => {
-    // eslint-disable-next-line camelcase
-    const {
-      id, published, created_at, updated_at, ...rest
-    } = obj;
+    const { id, published, created_at, updated_at, ...rest } = obj;
     return Object.values(rest).some(
       (value) => value.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1,
     );

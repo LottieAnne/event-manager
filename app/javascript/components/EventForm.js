@@ -6,6 +6,7 @@ import Pikaday from 'pikaday';
 import PropTypes from 'prop-types';
 import { isEmptyObject, validateEvent, formatDate } from '../helpers/helpers';
 import 'pikaday/css/pikaday.css';
+import EventNotFound from './EventNotFound';
 
 const EventForm = ({ events, onSave }) => {
   const { id } = useParams();
@@ -88,6 +89,8 @@ const EventForm = ({ events, onSave }) => {
       onSave(event);
     }
   };
+
+  if (id && !event.id) return <EventNotFound />;
 
   return (
     <div>
